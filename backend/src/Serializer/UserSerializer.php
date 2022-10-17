@@ -11,6 +11,7 @@ class UserSerializer
         return [
             'id' => $user->getId(),
             'email' => $user->getEmail(),
+            'password' => $user->getPassword(),
             'firstName' => $user->getFirstName(),
             'lastName' => $user->getLastName(),
             'created' => $user->getDateCreated(),

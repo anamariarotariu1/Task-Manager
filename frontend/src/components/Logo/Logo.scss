@@ -1,0 +1,41 @@
+@import '../../styles/variables/colors.scss';
+@import '../../styles/variables/typography.scss';
+
+.logo-container {
+  display: flex;
+}
+
+.logo-container {
+  .logo-sign {
+    box-sizing: border-box;
+    width: 50px;
+    height: 50px;
+    border-radius: 5px;
+    background: var(--primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px;
+  }
+
+  .line {
+    border-radius: 3px;
+    width: 13px;
+    background: var(--light);
+    top: 0;
+  }
+
+  .short-line {
+    height: 15px;
+  }
+
+  .long-line {
+    height: 30px;
+  }
+
+  .logo-title {
+    color: var(--primary);
+    margin: 10px;
+    font-size: var(--text-md)
+  }
+}

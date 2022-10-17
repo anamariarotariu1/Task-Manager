@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Validation;
 
 
@@ -31,14 +32,14 @@ class CreateUserController extends AbstractController
             ->setDateCreated(new DateTime())
             ->setDateModified(new DateTime());
         $validator = Validation::createValidator();
-        // $violations = $validator->validate($requestBody['password'], [
-        //     new Length(['min' => 8]),
-        //     new NotBlank()
-        // ]);
-        // if (0 !== count($violations)) {
-        //     return new JsonResponse('Password must be 8 chars long', 406);
-        // }
+        $violations = $validator->validate($requestBody['password'], [
+            new Length(['min' => 8]),
+            new NotBlank()
+        ]);
+        if (0 !== count($violations)) {
+            return new JsonResponse('Password must be 8 chars long', 406);
+        }
         $repository->add($newUser, true);
-        return $this->json($serializer->userToArray($newUser), 201);
+        return $this->json($serializer->userToArray($newUser));
     }
 }
