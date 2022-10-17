@@ -24,5 +24,5 @@ composer-install:
 npm-install:
 	docker-compose run --entrypoint "npm" ui install
 
-#up: cleanup build npm-install composer-install migrate start
-up: cleanup build npm-install composer-install start
+up: cleanup build npm-install composer-install migrate start
+# up: cleanup build npm-install composer-install start
