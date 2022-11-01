@@ -28,7 +28,7 @@ class CreateUserController extends AbstractController
         $newUser->setEmail($requestBody['email'])
             ->setFirstName($requestBody['firstName'])
             ->setLastName($requestBody['lastName'])
-            ->setPassword(password_hash($requestBody['password'], PASSWORD_BCRYPT))
+            ->setPassword($requestBody['password'])
             ->setDateCreated(new DateTime())
             ->setDateModified(new DateTime());
         $validator = Validation::createValidator();
@@ -39,6 +39,7 @@ class CreateUserController extends AbstractController
         if (0 !== count($violations)) {
             return new JsonResponse('Password must be 8 chars long', 406);
         }
+        $newUser->setPassword(password_hash($requestBody['password'], PASSWORD_BCRYPT));
         $repository->add($newUser, true);
         return $this->json($serializer->userToArray($newUser));
     }

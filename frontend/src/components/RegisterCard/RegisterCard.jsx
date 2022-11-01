@@ -13,31 +13,33 @@ function RegisterCard() {
             password: `${values.password}`
         }).then(response => {
             if (response.status === 200) {
-                console.log('register done successfully');
+                window.location.href = "/login";
             }
         }).catch(error => {
-            console.log('Oops, error');
+            alert("An error occurred. Try again.")
             console.log(error);
         });
     }
     return <div>
         <form onSubmit={handleSubmit(submitInfo)} className="form-container">
             <div className="form-item">
-                <label htmlFor="firstName">First name</label>
-                <input {...register("firstName", {required: true})} id="firstName"/>
+                <label htmlFor="firstName" className="form-label">First name</label>
+                <input {...register("firstName", {required: true})} id="firstName" className="form-input"/>
             </div>
             <div className="form-item">
-                <label htmlFor="lastName">Last name</label>
-                <input {...register("lastName", {required: true, pattern: /^[A-Za-z]+$/i})} id="lastName"/>
+                <label htmlFor="lastName" className="form-label">Last name</label>
+                <input {...register("lastName", {required: true, pattern: /^[A-Za-z]+$/i})} id="lastName"
+                       className="form-input"/>
 
             </div>
             <div className="form-item">
-                <label htmlFor="email">Email</label>
-                <input {...register("email", {required: true})} type="email" id="email"/>
+                <label htmlFor="email" className="form-label">Email</label>
+                <input {...register("email", {required: true})} type="email" id="email" className="form-input"/>
             </div>
             <div className="form-item">
-                <label htmlFor="password">Password</label>
-                <input {...register("password", {required: true})} type="password" id="password"/>
+                <label htmlFor="password" className="form-label">Password</label>
+                <input {...register("password", {required: true})} type="password" id="password"
+                       className="form-input"/>
             </div>
             <input type="submit"/>
         </form>
